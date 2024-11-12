@@ -1,0 +1,20 @@
+body {
+  background-color: #451a03;
+}
+
+.big-cheesecake {
+  width: max(5em, 75svw);
+  height: max(75svh, 75svh);
+  aspect-ratio: 1/1;
+  transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+.big-cheesecake > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.big-cheesecake:active {
+  transform: scale(0.9);
+}
