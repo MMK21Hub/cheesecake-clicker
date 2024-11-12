@@ -1,3 +1,3 @@
 # 🍰 Cheesecake clicker
 
-> A clicker game inspired by our favorite dessert
+> A clicker game inspired by our favourite dessert
