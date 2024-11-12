@@ -2,9 +2,18 @@ body {
   background-color: #451a03;
 }
 
+.middle-area {
+  height: 70svh;
+  display: flex;
+  justify-content: center;
+}
+
+.middle-area > * {
+  height: 70svh;
+}
+
 .big-cheesecake {
-  width: max(5em, 75svw);
-  height: max(75svh, 75svh);
+  height: 100%;
   aspect-ratio: 1/1;
   transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 }
