@@ -15,6 +15,10 @@ body {
   object-fit: contain;
 }
 
+.big-cheesecake:hover {
+  transform: scale(1.1) rotate(2deg);
+}
+
 .big-cheesecake:active {
-  transform: scale(0.9);
+  transform: scale(0.95);
 }
