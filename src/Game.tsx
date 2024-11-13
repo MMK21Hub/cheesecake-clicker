@@ -1,10 +1,16 @@
-import { store } from "voby"
+import { typedStore } from "./reactivity"
 
-export const gameData = store(
-  JSON.parse(localStorage.getItem("cheesecake-data") || "null") || {
-    cheesecakes: 0,
-  }
+const defaultGameData = {
+  cheesecakes: 0,
+}
+
+export const gameData = typedStore<typeof defaultGameData>(
+  JSON.parse(localStorage.getItem("cheesecake-data") || "null") ||
+    defaultGameData
 )
+
+// @ts-ignore shh, it's for debugging
+window.gameData = gameData
 
 export function saveGame() {
   localStorage.setItem("cheesecake-data", JSON.stringify(gameData))
@@ -19,7 +25,7 @@ function Game(): JSX.Element {
     <>
       <div class="top-area">
         <div class="cheesecake-count">
-          <span>{() => gameData.cheesecakes} cheesecakes</span>
+          <span>{() => gameData.cheesecakes.toLocaleString()} cheesecakes</span>
         </div>
       </div>
       <div class="middle-area">
