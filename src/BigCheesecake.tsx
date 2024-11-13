@@ -4,21 +4,17 @@ import { gameData } from "./Game"
 function clickCheesecake(source: MouseEvent | KeyboardEvent | null = null) {
   gameData.cheesecakes += 1
   if (source instanceof MouseEvent) {
-    const particle = h(
-      "div",
-      {
-        class: "particle",
-        style: {
-          position: "absolute",
-          left: `${source.clientX}px`,
-          top: `${source.clientY}px`,
-        },
+    const particle = h("div", {
+      class: "cheesecake-particle",
+      style: {
+        position: "absolute",
+        left: `${source.clientX}px`,
+        top: `${source.clientY}px`,
       },
-      "+1"
-    )() as HTMLDivElement
+    })() as HTMLDivElement
     document.body.append(particle)
     setTimeout(() => {
-      particle.remove()
+      //   particle.remove()
     }, 1000)
   }
 }

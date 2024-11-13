@@ -64,3 +64,15 @@ body {
 .big-cheesecake.active {
   transform: scale(0.8);
 }
+
+.cheesecake-particle {
+  position: absolute;
+  width: 2rem;
+  pointer-events: none;
+  translate: -50% -50%; /* So they appear directly under cursor */
+  aspect-ratio: 1/1;
+  background-image: url(/assets/cheesecake-temp-design.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
