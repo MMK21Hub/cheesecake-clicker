@@ -10,4 +10,6 @@ if (!particlesContainer) {
   console.error("No particles container found")
 }
 
+console.log("wow what an amazing game do we have here")
+
 render(<Game />, gameElement)
