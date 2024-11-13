@@ -10,6 +10,18 @@ body {
   justify-content: center;
 }
 
+.cheesecake-count {
+  background-color: #1a0803;
+  border-radius: 0 0 1rem 1rem;
+  height: min(100%, 3rem);
+  padding-inline: 1rem;
+  /* padding-block: 0.5rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
 .middle-area {
   height: 70svh;
   display: flex;
