@@ -14,8 +14,9 @@ function clickCheesecake(source: MouseEvent | KeyboardEvent | null = null) {
     })() as HTMLDivElement
     document.body.append(particle)
     setTimeout(() => {
-      //   particle.remove()
-    }, 1000)
+      particle.classList.add("fade-out")
+    }, 800)
+    // TODO remove particle after animation
   }
 }
 
