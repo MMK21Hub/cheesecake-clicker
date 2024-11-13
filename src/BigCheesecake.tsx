@@ -1,16 +1,22 @@
+import { h } from "voby"
 import { gameData } from "./Game"
 
 function clickCheesecake(source: MouseEvent | KeyboardEvent | null = null) {
   gameData.cheesecakes += 1
   if (source instanceof MouseEvent) {
-    // particle effect
-    const particle = document.createElement("div")
-    particle.classList.add("particle")
-    particle.innerText = "+1"
-    particle.style.position = "absolute"
-    particle.style.left = `${source.clientX}px`
-    particle.style.top = `${source.clientY}px`
-    document.body.appendChild(particle)
+    const particle = h(
+      "div",
+      {
+        class: "particle",
+        style: {
+          position: "absolute",
+          left: `${source.clientX}px`,
+          top: `${source.clientY}px`,
+        },
+      },
+      "+1"
+    )() as HTMLDivElement
+    document.body.append(particle)
     setTimeout(() => {
       particle.remove()
     }, 1000)
