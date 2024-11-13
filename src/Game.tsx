@@ -1,7 +1,7 @@
 import { store } from "voby"
 
 export const gameData = store(
-  JSON.parse(localStorage.getItem("cheesecake-data") || "{}") || {
+  JSON.parse(localStorage.getItem("cheesecake-data") || "null") || {
     cheesecakes: 0,
   }
 )
@@ -9,6 +9,10 @@ export const gameData = store(
 export function saveGame() {
   localStorage.setItem("cheesecake-data", JSON.stringify(gameData))
 }
+
+saveGame()
+
+setInterval(saveGame, 1000)
 
 function Game(): JSX.Element {
   return (
