@@ -1,5 +1,6 @@
 import { h } from "voby"
 import { gameData } from "./Game"
+import { particlesContainer } from "."
 
 function clickCheesecake(source: MouseEvent | KeyboardEvent | null = null) {
   gameData.cheesecakes += 1
@@ -12,7 +13,7 @@ function clickCheesecake(source: MouseEvent | KeyboardEvent | null = null) {
         top: `${source.clientY}px`,
       },
     })() as HTMLDivElement
-    document.body.append(particle)
+    particlesContainer.append(particle)
     setTimeout(() => {
       particle.classList.add("fade-out")
     }, 800)

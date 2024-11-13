@@ -67,7 +67,7 @@ body {
 
 .cheesecake-particle {
   position: absolute;
-  width: 2rem;
+  width: 3rem;
   pointer-events: none;
   translate: -50% -50%; /* So they appear directly under cursor */
   aspect-ratio: 1/1;
