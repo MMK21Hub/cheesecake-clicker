@@ -15,7 +15,6 @@ body {
   border-radius: 0 0 1rem 1rem;
   height: min(100%, 3rem);
   padding-inline: 1rem;
-  /* padding-block: 0.5rem; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,6 +47,7 @@ body {
   transform: scale(0.9) rotate(2deg);
 }
 
-.big-cheesecake:active {
+.big-cheesecake:active,
+.big-cheesecake.active {
   transform: scale(0.8);
 }

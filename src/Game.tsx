@@ -29,6 +29,21 @@ function Game(): JSX.Element {
             onClick={() => {
               gameData.cheesecakes += 1
             }}
+            onKeyDown={(event) => {
+              const element = event.target as HTMLButtonElement
+              if (event.key === " " || event.key === "Enter") {
+                event.preventDefault()
+                element.classList.add("active")
+              }
+            }}
+            onKeyUp={(event) => {
+              const element = event.target as HTMLButtonElement
+              if (event.key === " " || event.key === "Enter") {
+                event.preventDefault()
+                element.classList.remove("active")
+                gameData.cheesecakes += 1
+              }
+            }}
             type="button"
           >
             <img
