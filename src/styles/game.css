@@ -43,6 +43,10 @@ body {
   object-fit: contain;
 }
 
+.big-cheesecake:focus-visible {
+  transform: scale(0.92) rotate(1.5deg);
+}
+
 .big-cheesecake:hover {
   transform: scale(0.9) rotate(2deg);
 }
