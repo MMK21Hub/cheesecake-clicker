@@ -1,5 +1,13 @@
 body {
   background-color: #451a03;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+}
+
+.top-area {
+  height: 10svh;
+  display: flex;
+  justify-content: center;
 }
 
 .middle-area {
