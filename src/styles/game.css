@@ -65,7 +65,16 @@ body {
   transform: scale(0.8);
 }
 
+@keyframes grow {
+  to {
+    scale: 1;
+    /* opacity: 1; */
+  }
+}
+
 .cheesecake-particle {
+  scale: 0;
+  animation: grow 0.2s ease-out forwards;
   position: absolute;
   width: 3rem;
   pointer-events: none;
