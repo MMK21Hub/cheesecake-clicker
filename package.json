@@ -1,7 +1,7 @@
 {
   "name": "cheesecake-clicker",
   "version": "0.1.0",
-  "description": "",
+  "description": "An online clicker game inspired by our favourite dessert",
   "type": "module",
   "scripts": {
     "start": "vite",
