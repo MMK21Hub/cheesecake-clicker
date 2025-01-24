@@ -24,3 +24,7 @@ My friends wanted a leaderboard, so I decided to learn to use ✨ Airtable ✨ a
 - A friendly leaderboard for sharing stats
   - Private leaderboards, if required
 - Ingredients-based cheesecake creation
+
+## Tech stack
+
+Cheesecake Clicker uses **[✌️ Voby](https://github.com/vobyjs/voby)** as its JavaScript framework, because it's lightweight, performant, and supports JSX. It's styled with plain CSS files, with a mixture of utility classes and component-specific styles.
