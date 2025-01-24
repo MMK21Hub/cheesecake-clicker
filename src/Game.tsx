@@ -25,8 +25,12 @@ function Game(): JSX.Element {
   return (
     <>
       <div class="top-area">
-        <div class="cheesecake-count">
+        <div class="widget cheesecake-count">
           <span>{() => gameData.cheesecakes.toLocaleString()} cheesecakes</span>
+        </div>
+        <div class="widget leaderboard-placeholder">
+          <h2>Leaderboard</h2>
+          <span>Leaderboard coming soon!</span>
         </div>
       </div>
       <div class="middle-area">

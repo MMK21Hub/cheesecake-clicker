@@ -5,20 +5,40 @@ body {
 }
 
 .top-area {
-  height: 10svh;
-  display: flex;
+  height: max(10svh, 4em);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "left middle right";
   justify-content: center;
 }
 
-.cheesecake-count {
+.widget {
   background-color: #1a0803;
   border-radius: 0 0 1rem 1rem;
-  height: min(100%, 3rem);
+  min-height: 1em;
   padding-inline: 1rem;
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-inline: 1svw;
+}
+
+.cheesecake-count {
+  grid-area: middle;
+  height: min(100%, 3rem);
+  max-width: 20rem;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+}
+
+.leaderboard-placeholder {
+  grid-area: right;
+}
+
+.leaderboard-placeholder h2 {
+  text-align: center;
+  /* margin-bottom: 0.5rem; */
 }
 
 .middle-area {
