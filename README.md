@@ -23,4 +23,4 @@ My friends wanted a leaderboard, so I decided to learn to use ✨ Airtable ✨ a
 
 - A friendly leaderboard for sharing stats
   - Private leaderboards, if required
--
+- Ingredients-based cheesecake creation
