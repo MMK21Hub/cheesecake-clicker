@@ -30,7 +30,7 @@ function Game(): JSX.Element {
         </div>
         <div class="widget leaderboard-placeholder">
           <h2>Leaderboard</h2>
-          <span>Leaderboard coming soon!</span>
+          <span>Coming soon!</span>
         </div>
       </div>
       <div class="middle-area">
