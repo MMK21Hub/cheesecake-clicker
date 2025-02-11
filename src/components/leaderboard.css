@@ -33,7 +33,7 @@
   background-color: hsla(var(--primary-hsl), 0.15);
 }
 
-.leaderboard-item:nth-child(even) {
+.leaderboard-item:nth-child(even) td {
   background-color: hsla(var(--primary-hsl), 0.1);
 }
 

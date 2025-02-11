@@ -34,8 +34,8 @@ function Leaderboard() {
         <tbody>
           <LeaderboardItem rank={1} name="Mish" count={1000} />
           <LeaderboardItem rank={2} name="James" count={100} />
-          <LeaderboardItem rank={2} name="James 2" count={100} />
-          <LeaderboardItem rank={2} name="James 3" count={100} />
+          <LeaderboardItem rank={3} name="James 2" count={100} />
+          <LeaderboardItem rank={4} name="James 3" count={100} />
         </tbody>
       </table>
     </div>
