@@ -45,3 +45,8 @@
   font-weight: bold;
   font-size: 0.95rem;
 }
+
+.leaderboard-item-count {
+  text-align: right;
+  padding-right: 0.5rem;
+}
