@@ -2,21 +2,31 @@ import { $, $$, For, FunctionMaybe } from "voby"
 import "./leaderboard.css"
 import { gameConfig } from "../gameData"
 
+const LOADING = Symbol("loading")
+const ERROR = Symbol("error")
+
 interface LeaderboardAPIItem {
   username: string
   score: number
 }
 type LeaderboardAPIResponse = LeaderboardAPIItem[]
+type LeaderboardDataMaybe =
+  | LeaderboardAPIResponse
+  | typeof LOADING
+  | typeof ERROR
 
 async function fetchLeaderboard() {
   const url = new URL(gameConfig.leaderboard.apiBaseUrl)
-  const data = (await fetch(url).then((response) =>
-    response.json()
-  )) as LeaderboardAPIResponse
+  const data: LeaderboardAPIResponse | typeof ERROR = await fetch(url)
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error("Failed to fetch leaderboard data", error)
+      return ERROR
+    })
   return data
 }
 
-const leaderboardData = $<LeaderboardAPIResponse>([])
+const leaderboardData = $<LeaderboardDataMaybe>(LOADING)
 fetchLeaderboard().then((data) => leaderboardData(data))
 
 function LeaderboardItem({
@@ -50,15 +60,22 @@ function Leaderboard() {
           </tr>
         </thead>
         <tbody>
-          <For values={leaderboardData}>
-            {(item, index) => (
-              <LeaderboardItem
-                rank={() => $$(index) + 1}
-                name={item.username}
-                count={item.score}
-              />
-            )}
-          </For>
+          {() => {
+            const data = leaderboardData()
+            if (data === LOADING) return "Loading..."
+            if (data === ERROR) return "Leaderboard unavailable :("
+            return (
+              <For values={data}>
+                {(item, index) => (
+                  <LeaderboardItem
+                    rank={() => $$(index) + 1}
+                    name={item.username}
+                    count={item.score}
+                  />
+                )}
+              </For>
+            )
+          }}
         </tbody>
       </table>
     </div>
