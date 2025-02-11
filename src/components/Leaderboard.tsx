@@ -36,6 +36,15 @@ function Leaderboard() {
           <LeaderboardItem rank={2} name="James" count={100} />
           <LeaderboardItem rank={3} name="James 2" count={100} />
           <LeaderboardItem rank={4} name="James 3" count={100} />
+          <LeaderboardItem rank={5} name="James 4" count={100} />
+          <LeaderboardItem rank={6} name="James 5" count={100} />
+          <LeaderboardItem rank={7} name="James 6" count={100} />
+          <LeaderboardItem rank={8} name="James 7" count={100} />
+          <LeaderboardItem rank={9} name="James 8" count={100} />
+          <LeaderboardItem rank={10} name="James 9" count={100} />
+          <LeaderboardItem rank={11} name="James 10" count={100} />
+          <LeaderboardItem rank={12} name="James 11" count={100} />
+          <LeaderboardItem rank={13} name="James 12" count={100} />
         </tbody>
       </table>
     </div>
