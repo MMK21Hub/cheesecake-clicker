@@ -2,6 +2,9 @@ body {
   background-color: #451a03;
   color: #fff;
   font-family: "Roboto", sans-serif;
+  /* Cheesecake orange */
+  --primary-hsl: 26, 100%, 66%;
+  --primary: hsl(var(--primary-hsl));
 }
 
 .top-area {
@@ -30,15 +33,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.leaderboard-placeholder {
-  grid-area: right;
-}
-
-.leaderboard-placeholder h2 {
-  text-align: center;
-  /* margin-bottom: 0.5rem; */
 }
 
 .middle-area {
@@ -72,7 +66,7 @@ body {
 }
 
 .big-cheesecake:focus-visible img {
-  box-shadow: inset 0 0 10rem 0.1rem #f9a825;
+  box-shadow: inset 0 0 10rem 0.1rem var(--primary);
   /* border-radius: 2rem; */
 }
 

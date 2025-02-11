@@ -1,4 +1,5 @@
 import BigCheesecake from "./BigCheesecake"
+import Leaderboard from "./components/Leaderboard"
 import { typedStore } from "./reactivity"
 
 const defaultGameData = {
@@ -24,13 +25,12 @@ setInterval(saveGame, 1000)
 function Game(): JSX.Element {
   return (
     <>
+      <div class="floating-things">
+        <Leaderboard />
+      </div>
       <div class="top-area">
         <div class="widget cheesecake-count">
           <span>{() => gameData.cheesecakes.toLocaleString()} cheesecakes</span>
-        </div>
-        <div class="widget leaderboard-placeholder">
-          <h2>Leaderboard</h2>
-          <span>Coming soon!</span>
         </div>
       </div>
       <div class="middle-area">
