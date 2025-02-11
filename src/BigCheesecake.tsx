@@ -1,5 +1,5 @@
 import { h } from "voby"
-import { gameData } from "./Game"
+import { gameData } from "./gameData"
 import { particlesContainer } from "."
 
 function clickCheesecake(source: MouseEvent | KeyboardEvent | null = null) {
