@@ -12,6 +12,7 @@
 .leaderboard-widget table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 0.5rem;
   margin-bottom: 1rem;
 }
 
