@@ -64,8 +64,9 @@ function Leaderboard() {
             const data = leaderboardData()
             if (data === LOADING) return "Loading..."
             if (data === ERROR) return "Leaderboard unavailable :("
+            const items = data.slice(0, 10)
             return (
-              <For values={data}>
+              <For values={items}>
                 {(item, index) => (
                   <LeaderboardItem
                     rank={() => $$(index) + 1}
