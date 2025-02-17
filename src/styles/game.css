@@ -108,3 +108,9 @@ body {
 .cheesecake-particle.fade-out {
   opacity: 0;
 }
+
+.bottom-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

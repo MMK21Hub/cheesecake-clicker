@@ -19,7 +19,25 @@ function Game(): JSX.Element {
       </div>
       <div class="bottom-area">
         <div class="button-row">
-          <Button class="large-button pop-in">Join the leaderboard</Button>
+          <Button
+            class="large-button pop-in"
+            show={() => gameData.cheesecakes >= 10}
+          >
+            Join the leaderboard
+          </Button>
+        </div>
+        <div class="button-row">
+          <Button
+            class="pop-in"
+            show={() => gameData.cheesecakes > 0}
+            onClick={() =>
+              window.confirm(
+                `You sure you want to throw all your ${gameData.cheesecakes} cheesecakes away?`
+              ) && (gameData.cheesecakes = 0)
+            }
+          >
+            Reset cheesecakes
+          </Button>
         </div>
       </div>
     </>
