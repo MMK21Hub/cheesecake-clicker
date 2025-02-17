@@ -1,9 +1,9 @@
 import { h } from "voby"
-import { gameData } from "./gameData"
+import { game } from "./gameData"
 import { particlesContainer } from "."
 
 function clickCheesecake(source: MouseEvent | KeyboardEvent | null = null) {
-  gameData.cheesecakes += 1
+  game.incrementCheesecakes(1)
   if (source instanceof MouseEvent) {
     const particle = h("div", {
       class: "cheesecake-particle",
