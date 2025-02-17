@@ -19,7 +19,7 @@ function Game(): JSX.Element {
       </div>
       <div class="bottom-area">
         <div class="button-row">
-          <Button class="large-button">Join the leaderboard</Button>
+          <Button class="large-button pop-in">Join the leaderboard</Button>
         </div>
       </div>
     </>

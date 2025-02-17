@@ -16,3 +16,20 @@
   width: 100%;
   place-content: center;
 }
+
+.pop-in {
+  animation: pop-in 0.2s ease-in-out;
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.hidden {
+  display: none;
+}
