@@ -23,7 +23,10 @@ function Game(): JSX.Element {
         <div class="button-row">
           <Button
             class="large-button pop-in"
-            show={() => game.currentCheesecakes() >= 10}
+            show={() => game.allTimeCheesecakes() >= 10}
+            onClick={() => {
+              game.decrementCheesecakes(10)
+            }}
           >
             Join the leaderboard
           </Button>
@@ -31,14 +34,14 @@ function Game(): JSX.Element {
         <div class="button-row">
           <Button
             class="pop-in"
-            show={() => game.currentCheesecakes() > 0}
+            show={() => game.allTimeCheesecakes() > 0}
             onClick={() =>
               window.confirm(
-                `You sure you want to throw all your ${game.currentCheesecakes()} cheesecakes away?`
-              ) && game.resetCheesecakes()
+                `You sure you want to throw all your progress away? (including ${game.allTimeCheesecakes()} cheesecakes)`
+              ) && game.resetGame()
             }
           >
-            Reset cheesecakes
+            Reset game
           </Button>
         </div>
       </div>

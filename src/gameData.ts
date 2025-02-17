@@ -11,6 +11,8 @@ export const gameConfig = {
 
 const defaultGameData = {
   cheesecakes: 0,
+  cheesecakesAllTime: 0,
+  leaderboardEntry: null as null | { name: string },
 }
 
 class Game {
@@ -31,8 +33,8 @@ class Game {
     if (typeof savedData !== "object")
       throw new Error("Invalid data from localstorage")
     for (const key in savedData) {
-      const validKey = key as keyof GameData
-      this.data[validKey] = savedData[key]
+      // @ts-ignore
+      this.data[key] = savedData[key]
     }
   }
 
@@ -49,14 +51,26 @@ class Game {
 
   incrementCheesecakes(count: number) {
     this.data.cheesecakes += count
+    this.data.cheesecakesAllTime += count
   }
 
-  resetCheesecakes() {
-    this.data.cheesecakes = 0
+  decrementCheesecakes(count: number) {
+    this.data.cheesecakes -= count
+  }
+
+  resetGame() {
+    for (const key in defaultGameData) {
+      // @ts-ignore
+      this.data[key] = defaultGameData[key]
+    }
   }
 
   currentCheesecakes() {
     return this.data.cheesecakes
+  }
+
+  allTimeCheesecakes() {
+    return this.data.cheesecakesAllTime
   }
 }
 
