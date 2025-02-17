@@ -1,0 +1,31 @@
+.button {
+  background: hsl(from var(--primary) h s 35);
+  padding-inline: 0.5rem;
+  padding-block: 0.25rem;
+  border-radius: 0.5rem;
+  border: 2px solid hsl(from var(--primary) h s 25);
+  transition: scale 0.1s ease;
+}
+
+.button:hover {
+  background: hsl(from var(--primary) h s 50);
+  border-color: hsl(from var(--primary) h s 45);
+}
+
+.button:active {
+  background: hsl(from var(--primary) h s 45);
+  border-color: hsl(from var(--primary) h s 30);
+  /* transform: scale(1.05); */
+  font-weight: 500;
+}
+
+.button:focus-visible {
+  outline: 5px solid var(--primary);
+  outline-offset: 4px;
+}
+
+.large-button {
+  font-size: 1.2rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+}

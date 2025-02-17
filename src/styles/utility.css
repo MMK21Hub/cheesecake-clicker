@@ -9,3 +9,10 @@
   white-space: nowrap;
   border-width: 0;
 }
+
+.button-row {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  place-content: center;
+}
