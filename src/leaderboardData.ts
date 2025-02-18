@@ -49,4 +49,3 @@ export async function updateLeaderboard({
 }
 
 export const leaderboardData = $<LeaderboardDataMaybe>(LOADING)
-fetchLeaderboard().then((data) => leaderboardData(data))

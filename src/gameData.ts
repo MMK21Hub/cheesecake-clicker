@@ -1,4 +1,4 @@
-import { updateLeaderboard } from "./leaderboardData"
+import { fetchLeaderboard, updateLeaderboard } from "./leaderboardData"
 import { typedStore } from "./reactivity"
 
 export type GameData = typeof defaultGameData
@@ -13,7 +13,11 @@ const gameConfig = {
 const defaultGameData = {
   cheesecakes: 0,
   cheesecakesAllTime: 0,
-  leaderboardEntry: null as null | { username: string; userId: string },
+  leaderboardEntry: null as null | {
+    username: string
+    userId: string
+    lastCheesecakeCount: number
+  },
 }
 
 class Game {
@@ -43,8 +47,14 @@ class Game {
 
   init() {
     this.loadSavedData()
-    setInterval(() => this.saveGame(), 1000)
     this.saveGame()
+    setInterval(() => this.saveGame(), 1000)
+    setInterval(
+      () => this.data.leaderboardEntry && this.sendLeaderboardData(),
+      1000 * 30
+    )
+    setInterval(() => fetchLeaderboard(), 1000 * 60 * 2)
+    fetchLeaderboard()
     return this
   }
 
@@ -83,34 +93,46 @@ class Game {
     return this.data.cheesecakesAllTime
   }
 
-  initLeaderboardEntry(username: string) {
+  async initLeaderboardEntry(username: string) {
     if (this.data.leaderboardEntry)
       throw new Error("We already have an entry on the leaderboard!")
     const userId = crypto.randomUUID()
-    updateLeaderboard({
-      username,
-      score: this.currentCheesecakes(),
+    const currentCheesecakes = this.currentCheesecakes()
+    await updateLeaderboard({
       userId,
+      username,
+      score: currentCheesecakes,
     })
-    this.data.leaderboardEntry = { username, userId }
+    this.data.leaderboardEntry = {
+      username,
+      userId,
+      lastCheesecakeCount: currentCheesecakes,
+    }
   }
 
-  updateCloudLeaderboard() {
+  async sendLeaderboardData() {
     if (!this.data.leaderboardEntry)
       throw new Error("We're not on the leaderboard yet!")
-    const { username, userId } = this.data.leaderboardEntry
-    updateLeaderboard({
+    const currentCheesecakes = this.currentCheesecakes()
+    const { username, userId, lastCheesecakeCount } = this.data.leaderboardEntry
+    if (currentCheesecakes === lastCheesecakeCount)
+      return console.debug(
+        "Skipping cloud leaderboard update because score hasn't changed",
+        currentCheesecakes
+      )
+    await updateLeaderboard({
       userId,
       username,
-      score: this.currentCheesecakes(),
+      score: currentCheesecakes,
     })
+    this.data.leaderboardEntry.lastCheesecakeCount = currentCheesecakes
   }
 
-  changeCloudLeaderboardUsername(newUsername: string) {
+  async updateCloudLeaderboardUsername(newUsername: string) {
     if (!this.data.leaderboardEntry)
       throw new Error("We're not on the leaderboard yet!")
     this.data.leaderboardEntry.username = newUsername
-    updateLeaderboard({
+    await updateLeaderboard({
       userId: this.data.leaderboardEntry.userId,
       username: newUsername,
       score: this.currentCheesecakes(),
@@ -118,7 +140,8 @@ class Game {
   }
 }
 
-export const game = new Game(gameConfig, defaultGameData).init()
+export const game = new Game(gameConfig, defaultGameData)
+game.init()
 
 // @ts-ignore shh, it's for debugging
 window.game = game

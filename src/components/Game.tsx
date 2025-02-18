@@ -1,4 +1,5 @@
 import { game } from "../gameData"
+import AddToLeaderboard from "./AddToLeaderboard"
 import BigCheesecake from "./BigCheesecake"
 import Leaderboard from "./Leaderboard"
 import Button from "./ui/Button"
@@ -21,15 +22,7 @@ function Game(): JSX.Element {
       </div>
       <div class="bottom-area">
         <div class="button-row">
-          <Button
-            class="large-button pop-in"
-            show={() => game.allTimeCheesecakes() >= 10}
-            onClick={() => {
-              game.decrementCheesecakes(10)
-            }}
-          >
-            Join the leaderboard
-          </Button>
+          <AddToLeaderboard />
         </div>
         <div class="button-row">
           <Button
