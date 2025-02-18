@@ -22,7 +22,7 @@ class Game {
 
   constructor(config: GameConfig) {
     this.config = config
-    this.data = typedStore(defaultGameData)
+    this.data = typedStore(structuredClone(defaultGameData))
   }
 
   private loadSavedData() {
@@ -33,20 +33,22 @@ class Game {
     if (typeof savedData !== "object")
       throw new Error("Invalid data from localstorage")
     for (const key in savedData) {
-      // @ts-ignore
+      // @ts-ignore - can't think how to type-guard this
       this.data[key] = savedData[key]
     }
   }
 
   init() {
     this.loadSavedData()
-    setInterval(this.saveGame, 1000)
+    setInterval(() => this.saveGame(), 1000)
     this.saveGame()
     return this
   }
 
   saveGame() {
-    localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(this.data))
+    const data = JSON.stringify(this.data)
+    localStorage.setItem(this.LOCAL_STORAGE_KEY, data)
+    // console.debug("Saved game:", data)
   }
 
   incrementCheesecakes(count: number) {
@@ -60,9 +62,14 @@ class Game {
 
   resetGame() {
     for (const key in defaultGameData) {
-      // @ts-ignore
+      if (!(key in this.data)) {
+        console.warn(`Mismatched key in default data and game data: ${key}`)
+        continue
+      }
+      // @ts-ignore - can't think how to type-guard this
       this.data[key] = defaultGameData[key]
     }
+    this.saveGame()
   }
 
   currentCheesecakes() {
