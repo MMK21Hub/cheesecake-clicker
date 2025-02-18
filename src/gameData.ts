@@ -7,6 +7,8 @@ export type GameConfig = typeof gameConfig
 const gameConfig = {
   leaderboard: {
     apiBaseUrl: "https://cheesecake-worker.mmk21-spam.workers.dev/",
+    pollIntervalSecs: 60,
+    pushIntervalSecs: 60,
   },
 }
 
@@ -51,9 +53,13 @@ class Game {
     setInterval(() => this.saveGame(), 1000)
     setInterval(
       () => this.data.leaderboardEntry && this.sendLeaderboardData(),
-      1000 * 30
+      1000 * this.config.leaderboard.pushIntervalSecs
     )
-    setInterval(() => fetchLeaderboard(), 1000 * 60 * 2)
+    this.data.leaderboardEntry && this.sendLeaderboardData()
+    setInterval(
+      () => fetchLeaderboard(),
+      1000 * this.config.leaderboard.pollIntervalSecs
+    )
     fetchLeaderboard()
     return this
   }
@@ -108,6 +114,7 @@ class Game {
       userId,
       lastCheesecakeCount: currentCheesecakes,
     }
+    await fetchLeaderboard()
   }
 
   async sendLeaderboardData() {
@@ -116,16 +123,15 @@ class Game {
     const currentCheesecakes = this.currentCheesecakes()
     const { username, userId, lastCheesecakeCount } = this.data.leaderboardEntry
     if (currentCheesecakes === lastCheesecakeCount)
-      return console.debug(
-        "Skipping cloud leaderboard update because score hasn't changed",
-        currentCheesecakes
-      )
+      return console.debug("No changes to send to the leaderboard")
     await updateLeaderboard({
       userId,
       username,
       score: currentCheesecakes,
     })
+    console.debug("Updated cloud leaderboard with score:", currentCheesecakes)
     this.data.leaderboardEntry.lastCheesecakeCount = currentCheesecakes
+    await fetchLeaderboard()
   }
 
   async updateCloudLeaderboardUsername(newUsername: string) {
@@ -137,6 +143,7 @@ class Game {
       username: newUsername,
       score: this.currentCheesecakes(),
     })
+    await fetchLeaderboard()
   }
 }
 

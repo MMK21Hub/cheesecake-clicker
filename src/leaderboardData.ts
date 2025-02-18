@@ -41,10 +41,12 @@ export async function updateLeaderboard({
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ username, score, userId }),
+    body: JSON.stringify({ username, score, user_id: userId }),
   })
-  if (!response.ok)
-    return console.error("Failed to update leaderboard", response)
+  if (!response.ok) {
+    console.error("Failed to update leaderboard", response)
+    throw new Error("Failed to update leaderboard")
+  }
   return response.json()
 }
 

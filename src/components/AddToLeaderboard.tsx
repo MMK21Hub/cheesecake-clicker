@@ -13,7 +13,9 @@ function AddToLeaderboard() {
   return (
     <Button
       class="large-button pop-in"
-      show={() => game.allTimeCheesecakes() >= 10}
+      show={() =>
+        !game.data.leaderboardEntry && game.allTimeCheesecakes() >= 10
+      }
       onClick={() => {
         initialiseLeaderboardEntry()
         game.decrementCheesecakes(10)
