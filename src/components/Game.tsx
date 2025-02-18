@@ -1,5 +1,5 @@
 import { game } from "../gameData"
-import AddToLeaderboard from "./AddToLeaderboard"
+import AddToLeaderboard, { usernamePrompt } from "./AddToLeaderboard"
 import BigCheesecake from "./BigCheesecake"
 import Leaderboard from "./Leaderboard"
 import Button from "./ui/Button"
@@ -23,6 +23,17 @@ function Game(): JSX.Element {
       <div class="bottom-area">
         <div class="button-row">
           <AddToLeaderboard />
+          <Button
+            class="pop-in"
+            show={() => !!game.data.leaderboardEntry}
+            onClick={() => {
+              const newUsername = usernamePrompt()
+              if (!newUsername) return
+              game.updateCloudLeaderboardUsername(newUsername)
+            }}
+          >
+            Change username
+          </Button>
         </div>
         <div class="button-row">
           <Button
