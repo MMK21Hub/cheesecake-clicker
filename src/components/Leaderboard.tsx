@@ -1,33 +1,6 @@
-import { $, $$, For, FunctionMaybe } from "voby"
 import "./leaderboard.css"
-import { gameConfig } from "../gameData"
-
-const LOADING = Symbol("loading")
-const ERROR = Symbol("error")
-
-interface LeaderboardAPIItem {
-  username: string
-  score: number
-}
-type LeaderboardAPIResponse = LeaderboardAPIItem[]
-type LeaderboardDataMaybe =
-  | LeaderboardAPIResponse
-  | typeof LOADING
-  | typeof ERROR
-
-async function fetchLeaderboard() {
-  const url = new URL(gameConfig.leaderboard.apiBaseUrl)
-  const data: LeaderboardAPIResponse | typeof ERROR = await fetch(url)
-    .then((response) => response.json())
-    .catch((error) => {
-      console.error("Failed to fetch leaderboard data", error)
-      return ERROR
-    })
-  return data
-}
-
-const leaderboardData = $<LeaderboardDataMaybe>(LOADING)
-fetchLeaderboard().then((data) => leaderboardData(data))
+import { $$, For, FunctionMaybe } from "voby"
+import { ERROR, leaderboardData, LOADING } from "../leaderboardData"
 
 function LeaderboardItem({
   rank,

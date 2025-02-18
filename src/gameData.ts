@@ -1,9 +1,10 @@
+import { updateLeaderboard } from "./leaderboardData"
 import { typedStore } from "./reactivity"
 
 export type GameData = typeof defaultGameData
 export type GameConfig = typeof gameConfig
 
-export const gameConfig = {
+const gameConfig = {
   leaderboard: {
     apiBaseUrl: "https://cheesecake-worker.mmk21-spam.workers.dev/",
   },
@@ -12,7 +13,7 @@ export const gameConfig = {
 const defaultGameData = {
   cheesecakes: 0,
   cheesecakesAllTime: 0,
-  leaderboardEntry: null as null | { name: string },
+  leaderboardEntry: null as null | { username: string; userId: string },
 }
 
 class Game {
@@ -80,6 +81,40 @@ class Game {
 
   allTimeCheesecakes() {
     return this.data.cheesecakesAllTime
+  }
+
+  initLeaderboardEntry(username: string) {
+    if (this.data.leaderboardEntry)
+      throw new Error("We already have an entry on the leaderboard!")
+    const userId = crypto.randomUUID()
+    updateLeaderboard({
+      username,
+      score: this.currentCheesecakes(),
+      userId,
+    })
+    this.data.leaderboardEntry = { username, userId }
+  }
+
+  updateCloudLeaderboard() {
+    if (!this.data.leaderboardEntry)
+      throw new Error("We're not on the leaderboard yet!")
+    const { username, userId } = this.data.leaderboardEntry
+    updateLeaderboard({
+      userId,
+      username,
+      score: this.currentCheesecakes(),
+    })
+  }
+
+  changeCloudLeaderboardUsername(newUsername: string) {
+    if (!this.data.leaderboardEntry)
+      throw new Error("We're not on the leaderboard yet!")
+    this.data.leaderboardEntry.username = newUsername
+    updateLeaderboard({
+      userId: this.data.leaderboardEntry.userId,
+      username: newUsername,
+      score: this.currentCheesecakes(),
+    })
   }
 }
 

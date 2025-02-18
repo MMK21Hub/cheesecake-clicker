@@ -1,7 +1,7 @@
-import { game } from "./gameData"
+import { game } from "../gameData"
 import BigCheesecake from "./BigCheesecake"
-import Leaderboard from "./components/Leaderboard"
-import Button from "./components/ui/Button"
+import Leaderboard from "./Leaderboard"
+import Button from "./ui/Button"
 
 function Game(): JSX.Element {
   return (

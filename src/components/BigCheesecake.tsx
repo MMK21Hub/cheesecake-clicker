@@ -1,6 +1,6 @@
 import { h } from "voby"
-import { game } from "./gameData"
-import { particlesContainer } from "."
+import { game } from "../gameData"
+import { particlesContainer } from ".."
 
 function clickCheesecake(source: MouseEvent | KeyboardEvent | null = null) {
   game.incrementCheesecakes(1)
