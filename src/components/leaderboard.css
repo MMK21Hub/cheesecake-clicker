@@ -1,0 +1,52 @@
+.leaderboard-widget {
+  width: clamp(10rem, 40rem, 35vw);
+  position: fixed;
+  right: 0;
+}
+
+.leaderboard-widget h2 {
+  text-align: center;
+  /* margin-bottom: 0.5rem; */
+}
+
+.leaderboard-widget table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.leaderboard-item {
+  --border-radius: 0.75rem;
+}
+
+.leaderboard-item td:first-of-type {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.leaderboard-item td:last-of-type {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.leaderboard-item:nth-child(odd) td {
+  background-color: hsla(var(--primary-hsl), 0.15);
+}
+
+.leaderboard-item:nth-child(even) td {
+  background-color: hsla(var(--primary-hsl), 0.1);
+}
+
+.leaderboard-item-rank {
+  width: 3ch;
+  text-align: center;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.leaderboard-item-count {
+  text-align: right;
+  padding-right: 0.5rem;
+}

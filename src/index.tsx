@@ -1,5 +1,5 @@
 import { render } from "voby"
-import Game from "./Game"
+import Game from "./components/Game"
 
 const gameElement = document.querySelector("#game")
 if (!gameElement) {

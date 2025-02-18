@@ -1,0 +1,35 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.button-row {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  place-content: center;
+}
+
+.pop-in {
+  animation: pop-in 0.2s ease-in-out;
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.hidden {
+  display: none;
+}
