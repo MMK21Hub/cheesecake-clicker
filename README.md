@@ -4,7 +4,7 @@
 
 💻 **Check it out: [cheesecake-clicker.pages.dev](https://cheesecake-clicker.pages.dev/)**
 
-![Screenshot of Cheesecake clicker](cheesecaker-clicker.png)
+![Screenshot of Cheesecake clicker](cheesecake-clicker.png)
 
 ## Project motivation
 
